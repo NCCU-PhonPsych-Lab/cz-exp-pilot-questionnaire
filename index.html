@@ -1,0 +1,964 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#142d4e">
+  <title>Czech Speech Production Pilot | Background Questionnaire</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --navy: #203e59;
+      --navy-deep: #172e43;
+      --blue-wash: #edf2f6;
+      --ink: #22313e;
+      --muted: #526170;
+      --line: #d5dde3;
+      --paper: #ffffff;
+      --page: #f3f5f6;
+      --error: #a02d36;
+      --success: #246343;
+      --font-body: Arial, Helvetica, sans-serif;
+      --text-body: 1rem;
+      --text-small: .875rem;
+      --text-note: .9375rem;
+      --text-section: 1.25rem;
+      --text-title: 2rem;
+      font-family: var(--font-body);
+      font-size: 16px;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--page); font: 400 var(--text-body)/1.6 var(--font-body); letter-spacing: normal; word-spacing: normal; }
+    input, select, textarea, button, output { font: 400 var(--text-body)/1.5 var(--font-body); letter-spacing: normal; word-spacing: normal; }
+    strong { font-weight: 700; }
+    a { color: var(--navy); text-underline-offset: 3px; }
+    main { width: min(920px, calc(100% - 48px)); margin: 40px auto 80px; }
+    header { background: var(--paper); border: 1px solid var(--line); border-top: 4px solid var(--navy); border-radius: 6px; padding: 32px 40px; margin-bottom: 24px; }
+    .brand-row { display: flex; align-items: center; gap: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+    .logo-slot { flex: 0 0 160px; width: 160px; aspect-ratio: 1200 / 630; }
+    .logo-slot img { display: block; width: 100%; height: 100%; object-fit: contain; }
+    .institution { min-width: 0; color: var(--muted); font-size: var(--text-small); line-height: 1.6; }
+    .institution strong { display: block; color: var(--navy); font-size: inherit; }
+    .study-heading { margin: 28px 0 20px; }
+    .eyebrow { margin: 0 0 8px; color: var(--navy); font-size: var(--text-small); font-weight: 700; }
+    h1 { margin: 0 0 10px; color: var(--navy-deep); font-size: var(--text-title); font-weight: 700; line-height: 1.25; }
+    h2 { margin: 0; color: var(--navy-deep); font-size: var(--text-section); font-weight: 700; line-height: 1.4; }
+    h3 { margin: 0; color: var(--navy); font-size: var(--text-body); line-height: 1.5; }
+    p { margin: 0 0 12px; color: var(--muted); }
+    header > p { font-size: var(--text-note); }
+    .study-heading > p:last-child { margin: 0; }
+    .section-progress { position: sticky; top: 0; z-index: 20; margin: 0 0 24px; padding: 16px 24px; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; box-shadow: 0 3px 8px #172e430a; }
+    .progress-label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 16px; margin-bottom: 9px; color: var(--navy); font-size: var(--text-small); font-weight: 700; }
+    #progress-count { font-weight: 400; font-variant-numeric: tabular-nums; }
+    progress { display: block; width: 100%; height: 6px; overflow: hidden; border: 0; border-radius: 3px; background: #e4e9ed; accent-color: var(--navy); }
+    progress::-webkit-progress-bar { border-radius: 3px; background: #e4e9ed; }
+    progress::-webkit-progress-value { border-radius: 3px; background: var(--navy); }
+    progress::-moz-progress-bar { border-radius: 3px; background: var(--navy); }
+    .question-section { margin: 0 0 28px; background: var(--paper); border: 1px solid var(--line); border-radius: 6px; overflow: clip; }
+    .section-heading { padding: 24px 32px; border-bottom: 1px solid var(--line); background: #f8fafb; }
+    .section-meta { margin: 6px 0 0; color: var(--muted); font-size: var(--text-small); }
+    .field, fieldset { min-width: 0; margin: 0; padding: 0; border: 0; }
+    .question { display: grid; grid-template-columns: 32px minmax(0, 1fr); column-gap: 12px; min-width: 0; margin: 0; padding: 28px 32px 32px; border: 0; border-bottom: 1px solid var(--line); background: var(--paper); scroll-margin-top: calc(var(--progress-height, 100px) + 16px); }
+    .question:last-child { border-bottom: 0; }
+    .question > * { grid-column: 2; min-width: 0; }
+    .question > .question-title { grid-column: 1 / -1; }
+    .question-title { display: grid; grid-template-columns: 32px minmax(0, 1fr) auto; align-items: baseline; gap: 12px; margin-bottom: 10px; }
+    .q-number { color: var(--navy); font-size: var(--text-body); font-weight: 700; font-variant-numeric: tabular-nums; }
+    .q-prompt, .question-title .q-prompt { margin: 0; color: var(--ink); font-size: var(--text-body); font-weight: 700; line-height: 1.5; }
+    .required-label { color: var(--muted); font-size: var(--text-small); font-weight: 400; }
+    .hint, .example { margin: 0 0 8px; color: var(--muted); font-size: var(--text-note); font-weight: 400; line-height: 1.6; }
+    .example strong { font-weight: inherit; }
+    label, legend { color: var(--ink); font-size: var(--text-body); font-weight: 700; line-height: 1.5; }
+    .field > label { display: block; }
+    input[type="text"], input[type="number"], input[type="date"], input[type="month"], select, textarea { display: block; width: 100%; min-width: 0; margin-top: 8px; padding: 11px 12px; border: 1px solid #aab8c4; border-radius: 4px; background: var(--paper); color: var(--ink); font: 400 var(--text-body)/1.5 var(--font-body); }
+    input[type="number"] { font-variant-numeric: tabular-nums; }
+    input::placeholder, textarea::placeholder { color: #62717d; opacity: 1; font-weight: 400; }
+    textarea { min-height: 112px; resize: vertical; }
+    #caregiver-languages { min-height: 144px; }
+    #participant-code, #date-of-birth { max-width: 320px; }
+    input:focus-visible, select:focus-visible, textarea:focus-visible, button:focus-visible, summary:focus-visible, .question:focus-visible { outline: 3px solid #8aa9c3; outline-offset: 3px; }
+    input:disabled, select:disabled, textarea:disabled { background: #f0f3f5; color: var(--muted); }
+    input[readonly] { background: #f6f8fa; }
+    input[type="radio"], input[type="checkbox"] { flex: 0 0 18px; width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--navy); }
+    .options { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 8px; }
+    .options label, .inline-option, .field > .inline-option { display: inline-flex; align-items: flex-start; gap: 10px; min-height: 44px; padding: 8px 0; font-size: var(--text-body); font-weight: 400; line-height: 1.5; }
+    .repeat-item { min-width: 0; margin: 16px 0; padding: 20px; border: 0; border-left: 2px solid #c4d2de; border-radius: 0; background: #f6f8fa; }
+    .repeat-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 12px; }
+    .repeat-heading strong { color: var(--navy); font-size: var(--text-small); }
+    .two-col, .three-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+    .three-col { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .percent-item { display: grid; grid-template-columns: minmax(0, 1fr) 140px; gap: 0 20px; }
+    .percent-item .repeat-heading { grid-column: 1 / -1; }
+    .percent-item > .field { margin-top: 0 !important; }
+    .percent-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; margin-top: 8px; }
+    #percent-total { color: var(--navy); white-space: nowrap; font-weight: 700; font-variant-numeric: tabular-nums; }
+    #percent-total.invalid { color: var(--error); }
+    #percent-total.valid { color: var(--success); }
+    .scale-line { display: grid; grid-template-columns: minmax(0, 1fr) 100px; align-items: center; gap: 20px; margin-top: 12px; }
+    input[type="range"] { display: block; width: 100%; min-width: 0; height: 32px; margin: 0; accent-color: var(--navy); }
+    .scale-line output { color: var(--navy); font-size: var(--text-small); font-weight: 700; text-align: right; font-variant-numeric: tabular-nums; }
+    .scale-ends { display: flex; justify-content: space-between; gap: 20px; margin: 4px 0 0; color: var(--muted); font-size: var(--text-small); }
+    .scale-ends > span { flex: 1; min-width: 0; }
+    .scale-ends > span:last-child { text-align: right; }
+    button { min-height: 44px; border: 1px solid transparent; border-radius: 4px; padding: 10px 16px; font: 700 var(--text-body)/1.5 var(--font-body); cursor: pointer; }
+    button:disabled { opacity: .55; cursor: not-allowed; }
+    .primary { color: white; background: var(--navy); }
+    .primary:hover:not(:disabled) { background: var(--navy-deep); }
+    .secondary { color: var(--navy); background: var(--paper); border-color: #bac8d3; }
+    .secondary:hover:not(:disabled) { background: var(--blue-wash); }
+    .question > button { justify-self: start; margin-top: 8px; }
+    .remove { color: #84333a; background: transparent; font-size: var(--text-small); padding: 8px; text-decoration: underline; text-underline-offset: 3px; }
+    .confirm-rating { margin-top: 12px; font-size: var(--text-small); }
+    .question.has-error { box-shadow: inset 3px 0 var(--error); }
+    .question-error { margin: 16px 0 0; color: var(--error); font-size: var(--text-note); font-weight: 700; }
+    .validation { margin: 12px 0 0; color: var(--error); font-size: var(--text-note); }
+    .validation:empty { display: none; }
+    .card { padding: 28px 32px; margin: 0 0 24px; border: 1px solid var(--line); border-radius: 6px; background: var(--paper); }
+    .card h2 { margin-bottom: 12px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    .frequency-guide { margin: 4px 0 12px; color: var(--muted); font-size: var(--text-note); }
+    .frequency-guide summary { cursor: pointer; color: var(--navy); }
+    .frequency-guide dl { margin: 12px 0; }
+    .frequency-guide dt { font-weight: 700; }
+    .frequency-guide dd { margin: 0 0 8px; }
+    .manage-languages { justify-self: start; margin-top: 12px; font-size: var(--text-note); }
+    #upload-status { margin: 16px 0 0; font-weight: 700; }
+    #upload-status:empty { display: none; }
+    #upload-status.error { color: var(--error); }
+    #upload-status.success { color: var(--success); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+    [hidden] { display: none !important; }
+    @media (max-width: 600px) {
+      :root { --text-title: 1.75rem; }
+      main { width: calc(100% - 24px); margin: 16px auto 40px; }
+      header { padding: 24px 20px; }
+      .brand-row { flex-direction: column; align-items: flex-start; gap: 16px; padding-bottom: 20px; }
+      .logo-slot { flex: none; width: 140px; }
+      .study-heading { margin: 24px 0 16px; }
+      .section-progress { padding: 12px 16px; margin-bottom: 20px; }
+      .section-heading { padding: 20px; }
+      .question { padding: 24px 20px; grid-template-columns: 24px minmax(0, 1fr); column-gap: 8px; }
+      .question-title { grid-template-columns: 24px minmax(0, 1fr); gap: 8px; }
+      .required-label { grid-column: 2; }
+      .repeat-item { padding: 16px 12px; }
+      .two-col, .three-col, .percent-item { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+      .percent-item .repeat-heading { margin-bottom: 0; }
+      .scale-line { grid-template-columns: minmax(0, 1fr) 88px; gap: 12px; }
+      .card { padding: 24px 20px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div class="brand-row">
+      <div class="logo-slot"><img src="./Lab%20logo_IPA%20version.png" width="1200" height="630" alt="Phonetics and Psycholinguistics Laboratory logo"></div>
+      <div class="institution">
+        <strong>Phonetics and Psycholinguistics Laboratory</strong>
+        Graduate Institute of Linguistics, National Chengchi University<br>
+        Taipei, Taiwan
+      </div>
+    </div>
+    <div class="study-heading">
+      <p class="eyebrow">Czech Speech Production Pilot</p>
+      <h1>Participant Background Questionnaire</h1>
+      <p>Language and regional background</p>
+    </div>
+    <p>Thank you for taking part in the Czech Speech Production Pilot at National Chengchi University on 12 August 2026. This follow-up questionnaire collects additional information about your language and regional background to help the research team describe and interpret the recordings you have already provided.</p>
+    <p>Please enter the participant code provided by the research team. Do not enter your name. Your responses will be linked to your pilot recording using this code.</p>
+    <p>Completing this follow-up questionnaire is voluntary. You may choose not to complete it or stop before submitting. To submit a completed questionnaire, please respond to all 14 questions. Where offered, you may choose “Not sure”, “None”, or “Prefer not to answer”.</p>
+    <p>For questions about this follow-up questionnaire or your data, contact project assistant Yu at <a href="mailto:krashhh0709@gmail.com">krashhh0709@gmail.com</a>.</p>
+
+
+  </header>
+      <div class="section-progress" aria-label="Questionnaire completion progress">
+        <div class="progress-label"><span>Questionnaire progress</span><span id="progress-count">0 of 14 questions answered</span></div>
+        <progress id="question-progress" max="14" value="0" aria-describedby="progress-help">0%</progress>
+        <p class="sr-only" id="progress-help">All 14 questions are required. This indicator counts complete responses.</p>
+      </div>
+
+  <form id="questionnaire" novalidate>
+    <section class="question-section" aria-labelledby="section-a">
+      <div class="section-heading"><h2 id="section-a">A. Participant and regional background</h2><p class="section-meta">Questions 1–8 · Personal background, childhood, and early language experience</p></div>
+
+      <div class="question field">
+        <div class="question-title"><span class="q-number">1.</span><label class="q-prompt" for="participant-code">Participant code</label></div>
+        <p class="hint">Please enter the participant code provided by the research team. Do not enter your name.</p>
+        <p class="example"><strong>Example:</strong> CZ-PILOT-014</p>
+        <input id="participant-code" name="participant_code" type="text" autocomplete="off" placeholder="For example, CZ-PILOT-014" required>
+      </div>
+
+      <div class="question field">
+        <div class="question-title"><span class="q-number">2.</span><label class="q-prompt" for="date-of-birth">Date of birth</label></div>
+        <p class="hint">The research team will calculate your age on the recording date, 12 August 2026.</p>
+        <p class="example"><strong>Example:</strong> 04/03/1998 (DD/MM/YYYY)</p>
+        <input id="date-of-birth" name="date_of_birth" type="text" inputmode="numeric" autocomplete="bday" placeholder="DD/MM/YYYY" pattern="(0[1-9]|[12][0-9]|3[01])/(0[1-9]|1[0-2])/[0-9]{4}" aria-describedby="dob-hint">
+        <p class="hint" id="dob-hint">Enter the date as day/month/year, for example, 04/03/1998.</p>
+      </div>
+
+      <fieldset class="question" aria-labelledby="sex-title">
+        <div class="question-title"><span class="q-number" aria-hidden="true">3.</span><span class="q-prompt" id="sex-title">Sex</span></div>
+        <p class="hint">What is your sex?</p>
+        <p class="example"><strong>Example:</strong> Female (select one response option)</p>
+        <div class="options">
+          <label><input type="radio" name="sex" value="female"> Female</label>
+          <label><input type="radio" name="sex" value="male"> Male</label>
+          <label><input type="radio" name="sex" value="other"> Other</label>
+          <label><input type="radio" name="sex" value="prefer_not_to_answer"> Prefer not to answer</label>
+        </div>
+        <div id="sex-other-wrap" class="field" hidden style="margin-top:10px"><label for="sex-other">If you wish, please describe</label><input id="sex-other" type="text" autocomplete="off"></div>
+      </fieldset>
+
+      <div class="question field">
+        <div class="question-title"><span class="q-number">4.</span><label class="q-prompt" for="birthplace">Birthplace</label></div>
+        <p class="hint">In which city or town and region were you born? Please do not provide a street address.</p>
+        <p class="example"><strong>Example:</strong> Olomouc, Olomouc Region</p>
+        <input id="birthplace" name="birthplace" type="text" autocomplete="off" placeholder="City or town, region">
+      </div>
+
+      <div class="question">
+        <div class="question-title"><span class="q-number">5.</span><span class="q-prompt">Places where you grew up</span></div>
+        <p class="hint">List the places where you grew up and the approximate age range you lived in each place, up to your pilot recording on 12 August 2026. If you still lived in a place on that date, use your age at the recording as Age to. Give city/town and region only. Do not provide a street address.</p>
+        <p class="example"><strong>Example:</strong> Brno, South Moravian Region, ages 0 to 6; Prague, ages 6 to 18</p>
+        <div id="places-list"></div>
+        <button class="secondary" type="button" id="add-place">＋ Add another place</button>
+      </div>
+
+      <fieldset class="question" aria-labelledby="early-languages-title">
+        <div class="question-title"><span class="q-number" aria-hidden="true">6.</span><span class="q-prompt" id="early-languages-title">Languages acquired in early childhood</span></div>
+        <p class="hint">Which language(s) did you begin acquiring from birth or during early childhood? Select all that apply and specify any other language.</p>
+        <p class="example"><strong>Example:</strong> Czech and Slovak</p>
+        <div class="options">
+          <label><input type="checkbox" name="early_languages" value="Czech"> Czech</label>
+          <label><input type="checkbox" name="early_languages" value="Slovak"> Slovak</label>
+          <label><input type="checkbox" name="early_languages" value="Another language" id="early-other-check"> Another language</label>
+          <label><input type="checkbox" name="early_languages" value="Not sure" id="early-unsure-check"> Not sure</label>
+        </div>
+        <div class="field" id="early-other-wrap" hidden><label for="early-other">Please specify the other language</label><input id="early-other" name="early_language_other" type="text"></div>
+      </fieldset>
+
+      <fieldset class="question" aria-labelledby="czech-exposure-title">
+        <div class="question-title"><span class="q-number" aria-hidden="true">7.</span><span class="q-prompt" id="czech-exposure-title">Age of first regular exposure to Czech</span></div>
+        <p class="hint">At what age did you first have regular exposure to Czech?</p>
+        <p class="example"><strong>Example:</strong> From birth; or At age 4</p>
+        <div class="options">
+          <label><input type="radio" name="czech_exposure_start" value="from_birth"> From birth</label>
+          <label><input type="radio" name="czech_exposure_start" value="at_age" id="exposure-age-choice"> At age</label>
+          <label><input type="radio" name="czech_exposure_start" value="not_sure"> Not sure</label>
+        </div>
+        <div class="field" id="exposure-age-wrap" hidden><label for="czech-exposure-age">Age in years</label><input id="czech-exposure-age" name="czech_exposure_age" type="number" min="0" max="110" step="1" inputmode="numeric"></div>
+      </fieldset>
+
+      <div class="question field">
+        <div class="question-title"><span class="q-number">8.</span><label class="q-prompt" for="caregiver-languages">Languages used by caregivers during childhood</label></div>
+        <p class="hint">During your childhood, which language(s) did each of your main caregivers usually speak directly with you at home? Refer to each caregiver by their relationship to you, such as mother, father, or grandmother. Do not enter names. List all languages each caregiver regularly used, with one caregiver per line. You may add as many lines as needed.</p>
+        <p class="example"><strong>Example:</strong><br>Mother, Czech and Slovak<br>Father, Czech<br>Grandmother, Slovak</p>
+        <textarea id="caregiver-languages" name="caregiver_languages" placeholder="One caregiver per line"></textarea>
+        <!-- Researcher note: This format records which caregiver used each language without forcing multilingual households into a single main/secondary language. Participants may enter Not sure for a caregiver. Preserve line breaks for later researcher parsing. -->
+      </div>
+    </section>
+
+    <section class="question-section" aria-labelledby="section-b">
+      <div class="section-heading"><h2 id="section-b">B. Current language use and other language experience</h2><p class="section-meta">Questions 9–12 · Everyday language use, residence, and language learning</p></div>
+
+      <div class="question">
+        <div class="question-title"><span class="q-number">9.</span><span class="q-prompt">Current language-use percentages</span></div>
+        <p class="hint">Approximately what percentage of your everyday communication is in each language? Include Czech and every other language you currently use. The percentages should add up to 100%.</p>
+        <p class="example"><strong>Example:</strong> Czech, 80%; English, 20%; Total, 100%</p>
+        <div id="percent-list"></div>
+        <div class="percent-head"><button class="secondary" type="button" id="add-percent-language">＋ Add another language</button><span id="percent-total" aria-live="polite">Total: 100%</span></div>
+        <p id="percent-message" class="validation" aria-live="polite"></p>
+      </div>
+
+      <div class="question field">
+        <div class="question-title"><span class="q-number">10.</span><label class="q-prompt" for="czech-variety">Czech regional variety or accent</label></div>
+        <p class="hint">If you know, how would you describe the regional variety or accent of Czech you usually speak?</p>
+        <p class="example"><strong>Example:</strong> A variety associated with Brno; or I’m not sure</p>
+        <label class="inline-option"><input type="checkbox" id="variety-unsure" name="variety_not_sure"> I’m not sure</label>
+        <textarea id="czech-variety" name="czech_variety" placeholder="Describe your variety or accent, or select I’m not sure"></textarea>
+        <!-- Researcher note: Keep as self-description, not a technical dialect classification. -->
+      </div>
+
+      <fieldset class="question" aria-labelledby="residence-title">
+        <div class="question-title"><span class="q-number" aria-hidden="true">11.</span><span class="q-prompt" id="residence-title">Residence in a non-Czech-speaking environment</span></div>
+        <p class="hint">For this pilot follow-up, the residence-history part of this question applies to participants whose native languages include Czech. Please answer the first part to continue.</p>
+        <fieldset class="field">
+          <legend>Is Czech one of your native languages, including if you have more than one?</legend>
+          <div class="options">
+            <label><input type="radio" name="czech_native_status" value="yes"> Yes</label>
+            <label><input type="radio" name="czech_native_status" value="no"> No</label>
+            <label><input type="radio" name="czech_native_status" value="not_sure"> Not sure</label>
+          </div>
+        </fieldset>
+        <p class="hint" id="residence-not-applicable" role="status" hidden>The residence-history part is not applicable to you in this pilot questionnaire. Continue to Question 12; please complete the remaining questions.</p>
+        <fieldset class="field" id="residence-questions" hidden disabled>
+          <p class="hint">Have you ever lived for more than six consecutive months in an environment where Czech was not the main language? If yes, list each place and approximate dates. If you still live there, use the current month as the end date. Do not provide a street address.</p>
+          <p class="example"><strong>Example:</strong> Vienna, Austria, September 2018 to June 2020; Berlin, Germany, August 2021 to May 2022</p>
+          <p class="hint">If you selected “Not sure” about your native language, please answer the residence-history part as well.</p>
+          <div class="options">
+            <label><input type="radio" name="non_czech_residence" value="no" id="residence-no"> No</label>
+            <label><input type="radio" name="non_czech_residence" value="yes" id="residence-yes"> Yes</label>
+          </div>
+          <div id="residences-wrap" hidden>
+            <div id="residences-list"></div>
+            <button class="secondary" type="button" id="add-residence">＋ Add another stay</button>
+          </div>
+        </fieldset>
+      </fieldset>
+
+      <div class="question">
+        <div class="question-title"><span class="q-number">12.</span><span class="q-prompt">Other languages learned or used</span></div>
+        <p class="hint">List every language other than Czech that you have learned or used. Include your native language(s) if they are not Czech, as well as languages you no longer use. For a language acquired from birth, enter 0 as the starting age and select Natural exposure. Add one entry per language.</p>
+        <p class="example"><strong>Example:</strong> English, started at age 8, classroom instruction, currently use weekly, speaking ability 7/10</p>
+        <label class="inline-option"><input type="checkbox" id="no-other-languages"> Czech is the only language I have learned or used.</label>
+        <div id="languages-list"></div>
+        <button class="secondary" type="button" id="add-language">＋ Add another language</button>
+      </div>
+
+
+    </section>
+
+    <section class="question-section" aria-labelledby="section-c">
+      <div class="section-heading"><h2 id="section-c">C. Other Slavic language experience</h2><p class="section-meta">Questions 13–14 · Exposure before the recording and abilities recalled at that time</p></div>
+      <div class="question">
+        <div class="question-title"><span class="q-number">13.</span><span class="q-prompt">Hearing and speaking other Slavic languages before the pilot recording</span></div>
+        <p class="hint">Thinking back to the 12 months leading up to your pilot recording (12 August 2025 to 12 August 2026), how often did you (a) hear each language and (b) speak it yourself? Answer the two parts separately.</p>
+        <p class="hint">Hearing includes conversations, television, videos, and other spoken material, even when you did not understand it. Speaking means using the language yourself, including conversation or practice. Do not count reading or writing here. Give your best overall estimate, or choose “Cannot remember”.</p>
+        <p class="example"><strong>Example:</strong> Slovak — heard weekly, spoke never; Polish — heard less than monthly, spoke never.</p>
+        <details class="frequency-guide"><summary>How to choose a frequency</summary><dl>
+          <dt>Daily</dt><dd>Every day or almost every day.</dd>
+          <dt>Weekly</dt><dd>At least once a week, but not every day.</dd>
+          <dt>Monthly</dt><dd>At least once a month, but less than weekly.</dd>
+          <dt>Less than monthly</dt><dd>Some exposure or use, but less than once a month.</dd>
+          <dt>Never</dt><dd>None during this period.</dd>
+        </dl></details>
+        <div id="exposure-list"></div>
+        <button class="secondary" type="button" id="add-exposure-language">＋ Add another Slavic language</button>
+        <p class="hint">Add languages other than Czech here. The same languages will appear automatically in Question 14. Removing an additional language removes its answers from both questions.</p>
+      </div>
+
+      <div class="question">
+        <div class="question-title"><span class="q-number">14.</span><span class="q-prompt">Understanding and speaking other Slavic languages at the time of the pilot recording</span></div>
+        <p class="hint">Thinking back to your pilot recording on 12 August 2026, how well could you (a) understand spoken language and (b) speak each language listed in Question 13? Rate these separately based on what you remember about that time, rather than your abilities today. You do not need to have studied a language formally to rate it.</p>
+        <p class="hint">Choose “Cannot remember” if you cannot recall, or “Prefer not to answer” if you do not wish to provide a rating.</p>
+        <p class="example"><strong>Example:</strong> Slovak — understanding 8/10, speaking 2/10; Polish — understanding 2/10, speaking 0/10.</p>
+        <div id="comprehension-list"></div>
+        <a class="manage-languages" href="#question-13">Manage languages in Question 13</a>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Review and submit</h2>
+      <p>Please check your responses before submitting. After submission, your answers cannot be edited on this page. If you need to correct a submitted response, contact project assistant Yu.</p>
+      <div id="form-error" class="validation" role="alert"></div>
+      <div class="actions">
+        <button class="primary" type="submit" id="send-datapipe">Submit questionnaire</button>
+        <button class="secondary" type="button" id="download-json" hidden>Save a copy of your responses</button>
+      </div>
+      <p id="upload-status" role="status" aria-live="polite"></p>
+
+    </section>
+  </form>
+
+
+</main>
+
+<template id="place-template">
+  <fieldset class="repeat-item place-item">
+    <div class="repeat-heading"><strong class="item-label">Place</strong><button class="remove" type="button">Remove</button></div>
+    <div class="field"><label>City/town and region<input data-field="place" type="text" placeholder="For example, Brno, South Moravian Region"></label></div>
+    <div class="two-col" style="margin-top:10px">
+      <div class="field"><label>Age from<input data-field="age_from" type="number" min="0" max="110" step="1" inputmode="numeric"></label></div>
+      <div class="field"><label>Age to<input data-field="age_to" type="number" min="0" max="110" step="1" inputmode="numeric"></label></div>
+    </div>
+  </fieldset>
+</template>
+
+<template id="percent-template">
+  <div class="repeat-item percent-item">
+    <div class="repeat-heading"><strong class="item-label">Language</strong><button class="remove" type="button">Remove</button></div>
+    <div class="field"><label>Language name<input data-field="language" type="text" placeholder="For example, English"></label></div>
+    <div class="field" style="margin-top:10px"><label>Percentage (%)<input data-field="percentage" type="number" min="0" max="100" step="1" inputmode="numeric" value="0"></label></div>
+  </div>
+</template>
+
+<template id="residence-template">
+  <fieldset class="repeat-item residence-item">
+    <div class="repeat-heading"><strong class="item-label">Stay</strong><button class="remove" type="button">Remove</button></div>
+    <div class="field"><label>City/town and country<input data-field="place" type="text" placeholder="For example, Vienna, Austria"></label></div>
+    <div class="two-col" style="margin-top:10px">
+      <div class="field"><label>From<input data-field="from" type="month"></label></div>
+      <div class="field"><label>To<input data-field="to" type="month"></label></div>
+    </div>
+  </fieldset>
+</template>
+
+<template id="language-template">
+  <fieldset class="repeat-item language-item">
+    <div class="repeat-heading"><strong class="item-label">Language</strong><button class="remove" type="button">Remove</button></div>
+    <div class="field"><label>Language<input data-field="language" type="text" placeholder="For example, English"></label></div>
+    <div class="two-col" style="margin-top:10px">
+      <div class="field"><label>Age when you began acquiring or learning it<input data-field="start_age" type="number" min="0" max="110" step="1" inputmode="numeric"></label></div>
+      <div class="field"><label>How you learned it<select data-field="learning_method"><option value="">Select</option><option value="natural_exposure">Natural exposure</option><option value="classroom_instruction">Classroom instruction</option><option value="both">Both</option><option value="other">Other</option></select></label></div>
+    </div>
+    <div class="field method-other-wrap" hidden style="margin-top:10px"><label>Other learning method<input data-field="learning_method_other" type="text"></label></div>
+    <div class="field" style="margin-top:10px"><label>How often do you currently use it?<select data-field="current_use"><option value="">Select</option><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="less_than_monthly">Less than monthly</option><option value="never">Never</option></select></label></div>
+    <div class="field" style="margin-top:10px"><label>Current speaking ability</label><div class="scale-line"><input data-field="speaking_ability" type="range" min="0" max="10" step="1" value="0"><output>Not selected</output></div><div class="scale-ends"><span>0, Not at all</span><span>10, Highly proficient</span></div><button class="secondary confirm-rating" type="button">Use this rating (0)</button></div>
+  </fieldset>
+</template>
+
+<template id="exposure-template">
+  <div class="repeat-item exposure-item">
+    <div class="repeat-heading"><strong class="related-language-title">Additional language</strong><button class="remove" type="button" hidden>Remove</button></div>
+    <div class="field language-name-field"><label>Language name<input data-field="language" type="text" placeholder="For example, Ukrainian" autocomplete="off"></label></div>
+    <div class="two-col" style="margin-top:10px">
+      <div class="field"><label>How often did you hear this language?<select data-field="hearing_frequency"><option value="">Select</option><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="less_than_monthly">Less than monthly</option><option value="never">Never</option><option value="cannot_remember">Cannot remember</option></select></label></div>
+      <div class="field"><label>How often did you speak this language?<select data-field="speaking_frequency"><option value="">Select</option><option value="daily">Daily</option><option value="weekly">Weekly</option><option value="monthly">Monthly</option><option value="less_than_monthly">Less than monthly</option><option value="never">Never</option><option value="cannot_remember">Cannot remember</option></select></label></div>
+    </div>
+  </div>
+</template>
+
+<template id="comprehension-template">
+  <div class="repeat-item comprehension-item">
+    <div class="repeat-heading"><strong class="related-language-title">Additional language</strong></div>
+    <div class="two-col">
+      <div class="field"><label>Understanding spoken language<select data-field="listening_rating"><option value="">Select</option><option value="0">0 — Could not understand spoken language</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10 — Could understand spoken language very well</option><option value="cannot_remember">Cannot remember</option><option value="prefer_not_to_answer">Prefer not to answer</option></select></label><p class="hint">0 = Could not understand spoken language<br>10 = Could understand spoken language very well</p></div>
+      <div class="field"><label>Speaking ability<select data-field="speaking_rating"><option value="">Select</option><option value="0">0 — Could not speak this language</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10 — Could speak this language very well</option><option value="cannot_remember">Cannot remember</option><option value="prefer_not_to_answer">Prefer not to answer</option></select></label><p class="hint">0 = Could not speak this language<br>10 = Could speak this language very well</p></div>
+    </div>
+  </div>
+</template>
+
+<script>
+(() => {
+  // Participant questionnaire. Collection Experiment confirmed by the user on 2026-10-19.
+  const DATAPIPE_EXPERIMENT_ID = 'W1HpqDLlgixM';
+  const QUESTIONNAIRE_VERSION = 'pilot-2026-10-19.1';
+  const COLLECTION_MODE = 'production';
+  const SUBMISSION_ID = globalThis.crypto?.randomUUID?.() ?? `${Date.now()}-${Math.random().toString(36).slice(2, 10)}`;
+  let pendingSubmission = null;
+  let submissionAccepted = false;
+  let submissionInFlight = false;
+  let lockedControls = [];
+  const form = document.querySelector('#questionnaire');
+  const percentList = document.querySelector('#percent-list');
+  const percentTotal = document.querySelector('#percent-total');
+  const percentMessage = document.querySelector('#percent-message');
+  const errorBox = document.querySelector('#form-error');
+  const statusBox = document.querySelector('#upload-status');
+  const templates = Object.fromEntries(['place', 'percent', 'residence', 'language', 'exposure', 'comprehension'].map((name) => [name, document.querySelector(`#${name}-template`)]));
+  let relatedLanguageId = 0;
+  const relatedLanguagePairs = new Map();
+  let validationStarted = false;
+  let controlId = 0;
+  const questions = [...form.querySelectorAll('.question')];
+  questions.forEach((question, index) => {
+    question.id = `question-${index + 1}`;
+    question.tabIndex = -1;
+    const badge = document.createElement('span');
+    badge.className = 'required-label'; badge.textContent = 'Required';
+    question.querySelector('.question-title').append(badge);
+    const error = document.createElement('p');
+    error.id = `question-error-${index + 1}`; error.className = 'question-error'; error.hidden = true;
+    error.setAttribute('aria-live', 'polite');
+    question.append(error);
+  });
+  const progressPanel = document.querySelector('.section-progress');
+  new ResizeObserver(() => { document.documentElement.style.setProperty('--progress-height', `${progressPanel.getBoundingClientRect().height}px`); }).observe(progressPanel);
+
+  function addFromTemplate(name, root, options = {}) {
+    const node = templates[name].content.firstElementChild.cloneNode(true);
+    root.append(node);
+    node.querySelectorAll('input, select, textarea').forEach((control) => {
+      control.id = `response-${++controlId}`;
+      const label = control.closest('.field')?.querySelector('label');
+      if (label) label.htmlFor = control.id;
+      if (control.type === 'range') {
+        node.querySelector('output').htmlFor = control.id;
+      }
+    });
+    if (name !== 'exposure') node.querySelector('.remove')?.addEventListener('click', () => { node.remove(); updateLabels(root); if (name === 'percent') updatePercentTotal(); });
+    node.querySelectorAll('input[type="range"]').forEach((slider) => {
+      slider.addEventListener('input', () => {
+        slider.dataset.touched = 'true';
+        slider.nextElementSibling.value = slider.value;
+        node.querySelector('.confirm-rating').textContent = `Rating selected: ${slider.value}`;
+      });
+    });
+    if (name === 'percent') node.addEventListener('input', updatePercentTotal);
+    node.querySelector('.confirm-rating')?.addEventListener('click', () => {
+      const slider = node.querySelector('input[type="range"]');
+      slider.dataset.touched = 'true'; slider.nextElementSibling.value = slider.value;
+      node.querySelector('.confirm-rating').textContent = `Rating selected: ${slider.value}`;
+      refreshProgress();
+    });
+    if (name === 'language') {
+      const method = node.querySelector('[data-field="learning_method"]');
+      method.addEventListener('change', () => { node.querySelector('.method-other-wrap').hidden = method.value !== 'other'; });
+    }
+    updateLabels(root);
+    if (name === 'percent') updatePercentTotal();
+    return node;
+  }
+
+  function updateLabels(root) {
+    [...root.children].forEach((item, index) => {
+      const label = item.querySelector('.item-label');
+      if (label) label.textContent = `${label.dataset.base || label.textContent.replace(/ \d+$/, '')} ${index + 1}`;
+      if (label && !label.dataset.base) label.dataset.base = label.textContent.replace(/ \d+$/, '');
+    });
+  }
+
+  function updatePercentTotal() {
+    const sum = [...percentList.querySelectorAll('[data-field="percentage"]')].reduce((total, input) => total + Number(input.value), 0);
+    percentTotal.textContent = `Total: ${sum}%`;
+    const valid = sum === 100 && percentagesValid();
+    percentTotal.classList.toggle('valid', valid);
+    percentTotal.classList.toggle('invalid', !valid);
+    percentMessage.textContent = valid ? '' : `Enter a language name and a whole-number percentage from 0 to 100 for each entry. The total must be 100% (currently ${sum}%).`;
+  }
+
+  function percentagesValid() {
+    return [...percentList.querySelectorAll('.percent-item')].every((item) => {
+      const input = item.querySelector('[data-field="percentage"]');
+      const amount = input.valueAsNumber;
+      return item.querySelector('[data-field="language"]').value.trim() !== '' && input.value !== '' && Number.isInteger(amount) && amount >= 0 && amount <= 100;
+    });
+  }
+
+  function questionCompletion() {
+    return questionIssues().map((issues) => issues.length === 0);
+  }
+
+  function refreshProgress() {
+    const issues = questionIssues();
+    const answered = issues.filter((items) => items.length === 0).length;
+    if (validationStarted) renderQuestionErrors(issues);
+    const progress = document.querySelector('#question-progress');
+    progress.value = answered;
+    progress.setAttribute('aria-valuetext', `${answered} of 14 questions answered`);
+    document.querySelector('#progress-count').textContent = `${answered} of 14 questions answered`;
+  }
+
+  function value(selector) { return document.querySelector(selector).value.trim(); }
+  function numberOrNull(raw) { return raw === '' ? null : Number(raw); }
+  function birthDateAsISO(raw) {
+    const match = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+    if (!match) return null;
+    const [, dayText, monthText, yearText] = match;
+    const day = Number(dayText), month = Number(monthText), year = Number(yearText);
+    const parsed = new Date(Date.UTC(year, month - 1, day));
+    if (parsed.getUTCFullYear() !== year || parsed.getUTCMonth() !== month - 1 || parsed.getUTCDate() !== day) return null;
+    return `${yearText}-${monthText}-${dayText}`;
+  }
+  function collectRows(root, fields) {
+    return [...root.children].map((item) => Object.fromEntries(fields.map((key) => {
+      const input = item.querySelector(`[data-field="${key}"]`);
+      const raw = input?.value?.trim() ?? '';
+      return [key, raw === '' ? null : (input.type === 'number' ? Number(raw) : raw)];
+    })));
+  }
+
+  function collect() {
+    if (pendingSubmission) return pendingSubmission.payload;
+    const earlyLanguages = [...document.querySelectorAll('[name="early_languages"]:checked')].map((input) => input.value);
+    const exposureStart = document.querySelector('[name="czech_exposure_start"]:checked')?.value ?? null;
+    const residence = residenceRoute();
+    const languageRows = [...document.querySelectorAll('#languages-list .language-item')].map((item) => {
+      const get = (key) => item.querySelector(`[data-field="${key}"]`);
+      return {
+        language: get('language').value.trim() || null,
+        start_age: numberOrNull(get('start_age').value),
+        learning_method: get('learning_method').value || null,
+        learning_method_other: get('learning_method_other').value.trim() || null,
+        current_use: get('current_use').value || null,
+        speaking_ability: get('speaking_ability').dataset.touched === 'true' ? Number(get('speaking_ability').value) : null
+      };
+    }).filter((item) => item.language);
+    return {
+      schema_version: 3,
+      questionnaire_version: QUESTIONNAIRE_VERSION,
+      collection_mode: COLLECTION_MODE,
+      submission_id: SUBMISSION_ID,
+      participant_code: value('#participant-code'),
+      date_of_birth: birthDateAsISO(value('#date-of-birth')),
+      sex: document.querySelector('[name="sex"]:checked')?.value ?? null,
+      sex_other: document.querySelector('[name="sex"]:checked')?.value === 'other' ? (document.querySelector('#sex-other')?.value.trim() || null) : null,
+      birthplace: value('#birthplace') || null,
+      places_grew_up: collectRows(document.querySelector('#places-list'), ['place', 'age_from', 'age_to']),
+      early_languages: earlyLanguages,
+      early_language_other: value('#early-other') || null,
+      czech_exposure_start: exposureStart,
+      czech_exposure_age: exposureStart === 'at_age' ? numberOrNull(value('#czech-exposure-age')) : null,
+      caregiver_languages_raw: document.querySelector('#caregiver-languages').value || null,
+      current_language_use: [...percentList.querySelectorAll('.percent-item')].map((item) => ({
+        language: item.querySelector('[data-field="language"]').value.trim(),
+        percentage: Number(item.querySelector('[data-field="percentage"]').value)
+      })).filter((item) => item.language),
+      czech_variety: document.querySelector('#variety-unsure').checked ? 'Not sure' : (value('#czech-variety') || null),
+      czech_native_status: residence.native,
+      non_czech_residence_status: residence.status,
+      non_czech_residence: residence.answer,
+      non_czech_residences: residence.answer === 'yes' ? collectRows(document.querySelector('#residences-list'), ['place', 'from', 'to']) : [],
+      other_languages_none: document.querySelector('#no-other-languages').checked,
+      other_languages: document.querySelector('#no-other-languages').checked ? [] : languageRows,
+      other_languages_speaking_reference: 'at_questionnaire_completion',
+      related_language_exposure_reference_period: '2025-08-12/2026-08-12',
+      related_language_ability_reference_date: '2026-08-12',
+      related_language_ability_assessment: 'retrospective_self_report',
+      related_languages: collectRelatedLanguages(),
+      submitted_at: new Date().toISOString()
+    };
+  }
+
+  function questionIssues() {
+    const issues = Array.from({ length: 14 }, () => []);
+    const add = (q, message) => issues[q - 1].push(message);
+    const numberOK = (input) => input.value !== '' && Number.isFinite(input.valueAsNumber) && input.validity.valid;
+    if (!value('#participant-code')) add(1, 'Enter your participant code.');
+    const dob = birthDateAsISO(value('#date-of-birth'));
+    if (!dob || dob > '2026-08-12') add(2, 'Enter a valid date of birth in DD/MM/YYYY format, on or before the recording date.');
+    if (!document.querySelector('[name="sex"]:checked')) add(3, 'Select one response. You may choose Prefer not to answer.');
+    if (!value('#birthplace')) add(4, 'Enter your city/town and region of birth.');
+    const recordingAge = ageOnRecordingDate(dob);
+    const places = [...document.querySelectorAll('#places-list .place-item')];
+    if (!places.length) add(5, 'Add at least one place where you grew up.');
+    places.forEach((item, i) => {
+      const from = item.querySelector('[data-field="age_from"]');
+      const to = item.querySelector('[data-field="age_to"]');
+      if (!item.querySelector('[data-field="place"]').value.trim() || !numberOK(from) || !numberOK(to)) add(5, `Place ${i + 1}: enter a place and both ages (whole years, 0–110).`);
+      else if (from.valueAsNumber > to.valueAsNumber) add(5, `Place ${i + 1}: Age from must not exceed Age to.`);
+      else if (recordingAge !== null && (from.valueAsNumber > recordingAge || to.valueAsNumber > recordingAge)) add(5, `Place ${i + 1}: ages must not exceed your age at the pilot recording (${recordingAge}), calculated from the date of birth in Question 2.`);
+    });
+    const early = [...document.querySelectorAll('[name="early_languages"]:checked')];
+    if (!early.length) add(6, 'Select at least one language or Not sure.');
+    if (document.querySelector('#early-unsure-check').checked && early.length > 1) add(6, 'Select Not sure by itself.');
+    if (document.querySelector('#early-other-check').checked && !value('#early-other')) add(6, 'Specify the other language(s).');
+    const exposure = document.querySelector('[name="czech_exposure_start"]:checked')?.value;
+    if (!exposure) add(7, 'Select when you first had regular exposure to Czech, or Not sure.');
+    if (exposure === 'at_age' && !numberOK(document.querySelector('#czech-exposure-age'))) add(7, 'Enter an age in whole years from 0 to 110.');
+    if (!value('#caregiver-languages')) add(8, 'List your caregivers and their languages, one caregiver per line. You may write Not sure where needed.');
+    const sum = [...percentList.querySelectorAll('[data-field="percentage"]')].reduce((total, input) => total + Number(input.value), 0);
+    if (!percentagesValid()) add(9, 'Enter a language name and a whole-number percentage from 0 to 100 for each entry.');
+    if (sum !== 100) add(9, `The percentages total ${sum}%. Adjust them to total exactly 100%.`);
+    if (!document.querySelector('#variety-unsure').checked && !value('#czech-variety')) add(10, 'Describe your variety or accent, or select I’m not sure.');
+    const residence = residenceRoute();
+    if (!residence.native) add(11, 'Select whether Czech is one of your native languages.');
+    if (residence.applicable && !residence.answer) add(11, 'Answer Yes or No for the residence-history part.');
+    if (residence.answer === 'yes') {
+      const stays = [...document.querySelectorAll('#residences-list .residence-item')];
+      if (!stays.length) add(11, 'Add at least one stay.');
+      stays.forEach((item, i) => {
+        const get = (key) => item.querySelector(`[data-field="${key}"]`).value.trim();
+        if (!get('place') || !get('from') || !get('to')) add(11, `Stay ${i + 1}: enter the place and both dates. If you still live there, use the current month as the end date.`);
+        else if (get('from') > get('to')) add(11, `Stay ${i + 1}: the end date must not be before the start date.`);
+      });
+    }
+    if (document.querySelector('#no-other-languages').checked && hasOtherLanguageEvidence()) add(12, 'Your earlier answers include a language other than Czech. Uncheck Czech is the only language, then add that language here, including native languages other than Czech.');
+    if (!document.querySelector('#no-other-languages').checked) {
+      const languages = [...document.querySelectorAll('#languages-list .language-item')];
+      if (!languages.length) add(12, 'Add a language, or select that you have not learned or used any other languages.');
+      languages.forEach((item, i) => {
+        const get = (key) => item.querySelector(`[data-field="${key}"]`);
+        const prefix = `Language ${i + 1}: `;
+        if (!get('language').value.trim()) add(12, prefix + 'enter the language name, or remove this entry.');
+        if (!numberOK(get('start_age'))) add(12, prefix + 'enter your starting age in whole years from 0 to 110.');
+        if (!get('learning_method').value) add(12, prefix + 'select how you learned it.');
+        if (get('learning_method').value === 'other' && !get('learning_method_other').value.trim()) add(12, prefix + 'describe the other learning method.');
+        if (!get('current_use').value) add(12, prefix + 'select how often you currently use it.');
+        if (get('speaking_ability').dataset.touched !== 'true') add(12, prefix + 'select a speaking-ability rating. To answer 0, select Use this rating (0).');
+      });
+    }
+    const relatedIssues = relatedLanguageIssues();
+    relatedIssues.exposure.forEach((message) => add(13, message));
+    relatedIssues.ability.forEach((message) => add(14, message));
+    return issues;
+  }
+
+  function renderQuestionErrors(issues) {
+    questions.forEach((question, index) => {
+      const error = question.querySelector('.question-error');
+      error.textContent = issues[index].join(' ');
+      error.hidden = issues[index].length === 0;
+      question.classList.toggle('has-error', !error.hidden);
+      if (error.hidden) {
+        question.removeAttribute('aria-describedby');
+        question.removeAttribute('aria-invalid');
+      } else {
+        question.setAttribute('aria-describedby', error.id);
+        question.setAttribute('aria-invalid', 'true');
+      }
+    });
+    const count = issues.filter((items) => items.length > 0).length;
+    errorBox.textContent = count ? `Please complete the ${count} highlighted question${count === 1 ? '' : 's'} above.` : '';
+  }
+
+  function validate() {
+    validationStarted = true;
+    const issues = questionIssues();
+    renderQuestionErrors(issues);
+    const first = issues.findIndex((items) => items.length > 0);
+    if (first !== -1) {
+      questions[first].focus({ preventScroll: true });
+      questions[first].scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+    }
+    return first === -1;
+  }
+
+  function addPercentLanguage(name = '', amount = '', removable = true) {
+    const item = addFromTemplate('percent', percentList);
+    item.querySelector('[data-field="language"]').value = name;
+    item.querySelector('[data-field="percentage"]').value = String(amount);
+    item.querySelector('.remove').hidden = !removable;
+    updatePercentTotal();
+  }
+
+  function ageOnRecordingDate(isoBirthDate) {
+    if (!isoBirthDate || isoBirthDate > '2026-08-12') return null;
+    const [year, month, day] = isoBirthDate.split('-').map(Number);
+    return 2026 - year - (month > 8 || (month === 8 && day > 12) ? 1 : 0);
+  }
+
+  function hasOtherLanguageEvidence() {
+    if (document.querySelector('[name="czech_native_status"]:checked')?.value === 'no') return true;
+    const early = [...document.querySelectorAll('[name="early_languages"]:checked')].map((input) => input.value);
+    if (early.some((language) => language !== 'Czech' && language !== 'Not sure')) return true;
+    return [...percentList.querySelectorAll('.percent-item')].some((item) => {
+      const language = item.querySelector('[data-field="language"]').value.trim();
+      return language && languageKey(language) !== 'czech' && Number(item.querySelector('[data-field="percentage"]').value) > 0;
+    });
+  }
+
+  function residenceRoute() {
+    const native = document.querySelector('[name="czech_native_status"]:checked')?.value ?? null;
+    const applicable = native === 'yes' || native === 'not_sure';
+    const answer = applicable ? (document.querySelector('[name="non_czech_residence"]:checked')?.value ?? null) : null;
+    return { native, applicable, answer, status: native === 'no' ? 'not_applicable' : answer ? 'answered' : 'unanswered' };
+  }
+
+  function updateResidenceRoute() {
+    const route = residenceRoute();
+    const details = document.querySelector('#residence-questions');
+    details.hidden = !route.applicable;
+    details.disabled = !route.applicable;
+    document.querySelector('#residence-not-applicable').hidden = route.native !== 'no';
+    document.querySelector('#residences-wrap').hidden = route.answer !== 'yes';
+    const root = document.querySelector('#residences-list');
+    if (route.answer === 'yes' && !root.children.length) addFromTemplate('residence', root);
+  }
+
+  function languageKey(raw) {
+    const normalized = raw.normalize('NFKC').trim().toLowerCase().replace(/\s+/g, ' ');
+    return ({ 'slovenština': 'slovak', 'slovencina': 'slovak', 'slovenčina': 'slovak', 'polština': 'polish', 'polstina': 'polish', 'polski': 'polish', 'čeština': 'czech', 'cestina': 'czech' })[normalized] || normalized;
+  }
+
+  function relatedLanguageName(pair) {
+    return pair.exposure.querySelector('[data-field="language"]').value.trim();
+  }
+
+  function syncRelatedLanguage(pair) {
+    const language = relatedLanguageName(pair);
+    pair.exposure.querySelector('.related-language-title').textContent = language || 'Additional language';
+    pair.ability.querySelector('.related-language-title').textContent = language || 'Additional language — enter its name in Question 13';
+  }
+
+  function removeRelatedLanguage(id) {
+    const pair = relatedLanguagePairs.get(id);
+    if (!pair || pair.fixed) return false;
+    const answered = [...pair.exposure.querySelectorAll('select'), ...pair.ability.querySelectorAll('select')].some((input) => input.value !== '');
+    if (answered && !window.confirm(`Remove ${relatedLanguageName(pair) || 'this language'} and its answers from both Questions 13 and 14?`)) return false;
+    pair.exposure.remove(); pair.ability.remove();
+    relatedLanguagePairs.delete(id);
+    refreshProgress();
+    return true;
+  }
+
+  function addRelatedLanguage(language = '', fixed = false) {
+    const exposure = addFromTemplate('exposure', document.querySelector('#exposure-list'));
+    const ability = addFromTemplate('comprehension', document.querySelector('#comprehension-list'));
+    const id = `related-${++relatedLanguageId}`;
+    const pair = { id, fixed, exposure, ability };
+    relatedLanguagePairs.set(id, pair);
+    exposure.dataset.relatedId = id; ability.dataset.relatedId = id;
+    const name = exposure.querySelector('[data-field="language"]');
+    name.value = language;
+    exposure.querySelector('.language-name-field').hidden = fixed;
+    name.readOnly = fixed;
+    exposure.querySelector('.remove').hidden = fixed;
+    exposure.querySelector('.remove').addEventListener('click', () => { removeRelatedLanguage(id); });
+    name.addEventListener('input', () => { syncRelatedLanguage(pair); });
+    syncRelatedLanguage(pair);
+    return pair;
+  }
+
+  function relatedLanguageIssues() {
+    const exposure = [], ability = [];
+    const names = new Set();
+    const frequencies = new Set(['daily', 'weekly', 'monthly', 'less_than_monthly', 'never', 'cannot_remember']);
+    const ratings = new Set([...Array.from({ length: 11 }, (_, i) => String(i)), 'cannot_remember', 'prefer_not_to_answer']);
+    for (const pair of relatedLanguagePairs.values()) {
+      const language = relatedLanguageName(pair), key = languageKey(language);
+      const label = language || 'Additional language';
+      if (!language) {
+        exposure.push('Enter a name for the additional language, or remove it.');
+        ability.push('Enter the additional language name in Question 13, or remove it there.');
+      }
+      if (key === 'czech' || (key && names.has(key))) {
+        exposure.push(`${label}: use a different Slavic language other than Czech; each language should appear only once.`);
+        ability.push(`${label}: correct the language list in Question 13.`);
+      }
+      if (key) names.add(key);
+      for (const [field, action] of [['hearing_frequency', 'heard'], ['speaking_frequency', 'spoke']]) {
+        if (!frequencies.has(pair.exposure.querySelector(`[data-field="${field}"]`).value)) exposure.push(`${label}: select how often you ${action} this language before the recording, or Cannot remember.`);
+      }
+      for (const [field, action] of [['listening_rating', 'understanding spoken language'], ['speaking_rating', 'speaking ability']]) {
+        if (!ratings.has(pair.ability.querySelector(`[data-field="${field}"]`).value)) ability.push(`${label}: select a rating for ${action} at the recording date, Cannot remember, or Prefer not to answer.`);
+      }
+    }
+    return { exposure, ability };
+  }
+
+  function reportedFrequency(raw) {
+    return { status: raw === 'cannot_remember' ? 'cannot_remember' : raw === '' ? 'unanswered' : 'reported', value: raw === 'cannot_remember' || raw === '' ? null : raw };
+  }
+
+  function reportedRating(raw) {
+    const rated = /^(?:[0-9]|10)$/.test(raw);
+    return { status: rated ? 'rated' : raw || 'unanswered', score: rated ? Number(raw) : null };
+  }
+
+  function collectRelatedLanguages() {
+    return [...relatedLanguagePairs.values()].map((pair) => ({
+      id: pair.id,
+      language: relatedLanguageName(pair),
+      exposure: {
+        hearing_frequency: reportedFrequency(pair.exposure.querySelector('[data-field="hearing_frequency"]').value),
+        speaking_frequency: reportedFrequency(pair.exposure.querySelector('[data-field="speaking_frequency"]').value)
+      },
+      ability: {
+        listening_comprehension: reportedRating(pair.ability.querySelector('[data-field="listening_rating"]').value),
+        speaking_ability: reportedRating(pair.ability.querySelector('[data-field="speaking_rating"]').value)
+      }
+    }));
+  }
+
+  document.querySelector('#add-place').addEventListener('click', () => { addFromTemplate('place', document.querySelector('#places-list')); refreshProgress(); });
+  document.querySelector('#add-percent-language').addEventListener('click', () => { addPercentLanguage('', '', true); refreshProgress(); });
+  document.querySelector('#add-residence').addEventListener('click', () => { addFromTemplate('residence', document.querySelector('#residences-list')); refreshProgress(); });
+  document.querySelector('#no-other-languages').addEventListener('change', (event) => {
+    document.querySelector('#languages-list').hidden = event.target.checked;
+    document.querySelector('#add-language').disabled = event.target.checked;
+    document.querySelectorAll('#languages-list input, #languages-list select, #languages-list button').forEach((control) => { control.disabled = event.target.checked; });
+  });
+  document.querySelector('#add-language').addEventListener('click', () => { addFromTemplate('language', document.querySelector('#languages-list')); refreshProgress(); });
+  document.querySelector('#add-exposure-language').addEventListener('click', () => {
+    const pair = addRelatedLanguage(); refreshProgress(); pair.exposure.querySelector('[data-field="language"]').focus();
+  });
+
+  document.querySelector('#early-other-check').addEventListener('change', (event) => { document.querySelector('#early-other-wrap').hidden = !event.target.checked; });
+  document.querySelector('#early-unsure-check').addEventListener('change', (event) => {
+    if (event.target.checked) document.querySelectorAll('[name="early_languages"]').forEach((box) => { if (box !== event.target) box.checked = false; });
+  });
+  document.querySelectorAll('[name="early_languages"]').forEach((box) => box.addEventListener('change', (event) => {
+    if (event.target !== document.querySelector('#early-unsure-check') && event.target.checked) document.querySelector('#early-unsure-check').checked = false;
+  }));
+  document.querySelector('#exposure-age-choice').addEventListener('change', () => { document.querySelector('#exposure-age-wrap').hidden = false; });
+  document.querySelectorAll('[name="czech_exposure_start"]').forEach((radio) => radio.addEventListener('change', () => { document.querySelector('#exposure-age-wrap').hidden = !document.querySelector('#exposure-age-choice').checked; }));
+  document.querySelectorAll('[name="czech_native_status"]').forEach((radio) => radio.addEventListener('change', updateResidenceRoute));
+  document.querySelector('#residence-yes').addEventListener('change', updateResidenceRoute);
+  document.querySelector('#residence-no').addEventListener('change', updateResidenceRoute);
+  document.querySelector('#variety-unsure').addEventListener('change', (event) => { document.querySelector('#czech-variety').disabled = event.target.checked; });
+  document.querySelectorAll('[name="sex"]').forEach((radio) => radio.addEventListener('change', () => {
+    document.querySelector('#sex-other-wrap').hidden = document.querySelector('[name="sex"]:checked')?.value !== 'other';
+  }));
+  form.addEventListener('input', refreshProgress);
+  form.addEventListener('change', refreshProgress);
+  form.addEventListener('click', (event) => { if (event.target.closest('.remove')) setTimeout(refreshProgress, 0); });
+
+  form.addEventListener('submit', (event) => { event.preventDefault(); sendResponse(); });
+  document.querySelector('#download-json').addEventListener('click', () => {
+    if (!validate()) return;
+    const blob = new Blob([JSON.stringify(collect(), null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a'); link.href = url; link.download = `questionnaire-${SUBMISSION_ID}.json`; link.click();
+    URL.revokeObjectURL(url);
+  });
+  function setSubmissionLocked(locked) {
+    if (locked && !lockedControls.length) {
+      lockedControls = [...form.querySelectorAll('input, select, textarea, button')]
+        .filter((control) => control.id !== 'download-json')
+        .map((control) => ({ control, disabled: control.disabled }));
+      lockedControls.forEach(({ control }) => { control.disabled = true; });
+    } else if (!locked) {
+      lockedControls.forEach(({ control, disabled }) => { control.disabled = disabled; });
+      lockedControls = [];
+    }
+  }
+
+  async function sendResponse() {
+    if (submissionAccepted || submissionInFlight) return;
+    if (!pendingSubmission) {
+      if (!validate()) return;
+      const payload = collect();
+      const safeCode = payload.participant_code.replace(/[^a-zA-Z0-9_-]/g, '_');
+      pendingSubmission = { payload, filename: `questionnaire-${safeCode}-${SUBMISSION_ID}.json` };
+    }
+    const button = document.querySelector('#send-datapipe');
+    submissionInFlight = true;
+    setSubmissionLocked(true);
+    button.disabled = true;
+    statusBox.className = ''; statusBox.textContent = 'Submitting your questionnaire…';
+    try {
+      const response = await fetch('https://pipe.jspsych.org/api/data/', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ experimentID: DATAPIPE_EXPERIMENT_ID, filename: pendingSubmission.filename, data: JSON.stringify(pendingSubmission.payload) })
+      });
+      const result = await response.json().catch(() => ({}));
+      if (response.status === 201 || response.status === 202 || result.error === 'FILE_EXISTS') {
+        submissionAccepted = true;
+        document.querySelector('#download-json').hidden = true;
+        button.textContent = 'Questionnaire submitted';
+        statusBox.className = 'success';
+        statusBox.textContent = response.status === 201
+          ? 'Thank you. Your response has been saved. Please do not submit it again.'
+          : response.status === 202
+            ? 'Thank you. Your response has been received and is waiting to be saved. Please do not resubmit.'
+            : 'This response has already been received. Please do not submit it again.';
+      } else {
+        document.querySelector('#download-json').hidden = false;
+        statusBox.className = 'error';
+        statusBox.textContent = `The response was not accepted (${result.error || response.status}).`;
+        if (response.status === 400) {
+          pendingSubmission = null;
+          setSubmissionLocked(false);
+          button.textContent = 'Submit questionnaire';
+          statusBox.textContent += ' You can check your answers and try again.';
+        } else {
+          button.textContent = 'Retry submission';
+          statusBox.textContent += ' Please try submitting again, or save a copy of your responses before leaving this page.';
+        }
+      }
+    } catch (error) {
+      button.textContent = 'Retry submission';
+      document.querySelector('#download-json').hidden = false;
+      statusBox.className = 'error';
+      statusBox.textContent = 'We could not confirm that your response was received. Your answers remain on this page. Please retry submission, or save a copy of your responses before leaving. Do not refresh the page before doing so.';
+    } finally {
+      submissionInFlight = false;
+      button.disabled = submissionAccepted;
+    }
+  }
+
+
+  addFromTemplate('place', document.querySelector('#places-list'));
+  addPercentLanguage('Czech', '', false);
+  addRelatedLanguage('Slovak', true);
+  addRelatedLanguage('Polish', true);
+  updateResidenceRoute();
+  refreshProgress();
+})();
+</script>
+</body>
+</html>
